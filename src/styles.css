@@ -84,10 +84,16 @@ main {overflow-x:clip;}
 }
 @media(max-width:767px) {
  .hero-content {order:0;}
- .hero-art {order:1;width:245px;margin-top:2px;}
+ .hero-art {order:1;width:215px;margin-top:2px;}
  .hero h1 {font-size:46px;}
  .orb-caption {font-size:6px;letter-spacing:.6px;margin-top:-30px;margin-bottom:15px;}
  .hero-art .art-coordinate {display:none;}
+}
+@media(min-width:768px) and (max-width:1024px) {
+ .hero-content {width:48%;}
+ .hero-art {width:54%;right:-3%;}
+ .hero-art .art-coordinate.bottom {display:none;}
+ .hero h2 {font-size:27px;}
 }
 @media(max-width:360px) {.hero h1 {font-size:45px;}.hero-kicker {font-size:7px;}.identity {font-size:9px;}.contact-actions {flex-direction:column;}.email-row {font-size:8px;}.skills-grid {grid-template-columns:1fr;}.skill-card h3 {min-height:0;}}
 @media(prefers-reduced-motion:reduce) {html {scroll-behavior:auto;}*,*:before,*:after {animation:none!important;transition:none!important;}.will-reveal {opacity:1;transform:none;}}
