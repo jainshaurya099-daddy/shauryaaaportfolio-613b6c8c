@@ -1,0 +1,13 @@
+import { useEffect, useState } from 'react';
+import { Link, useRouterState } from '@tanstack/react-router';
+import { ArrowUpRight, Menu, X, Linkedin, Mail } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { profile } from '@/data/portfolio';
+const links = [{to:'/', label:'Home'}, {to:'/about', label:'About'}, {to:'/skills', label:'Skills'}, {to:'/projects', label:'Projects'}, {to:'/roadmap', label:'Roadmap'}] as const;
+export function PortfolioHeader() {
+ const [open,setOpen] = useState(false);
+ const pathname = useRouterState({ select: s => s.location.pathname });
+ useEffect(() => { setOpen(false); const elements = document.querySelectorAll('.reveal'); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; const observer = new IntersectionObserver(entries => entries.forEach(e => {if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target);}}), {threshold:0.08}); elements.forEach(el=> {el.classList.add('will-reveal');observer.observe(el);}); return () => observer.disconnect(); },[pathname]);
+ return <header className="site-header"><div className="header-inner page-width"><Link to="/" className="monogram" aria-label="Shaurya Jain home">SJ<span>.</span></Link><nav className="desktop-nav" aria-label="Main navigation">{links.map(link => <Link key={link.to} to={link.to} activeProps={{className:'nav-active'}} activeOptions={{exact:true}}>{link.label}</Link>)}</nav><Button variant="outline" asChild className="header-contact"><Link to="/contact">Let’s connect <ArrowUpRight /></Link></Button><Button className="mobile-menu-button" variant="ghost" size="icon" aria-label={open ? 'Close navigation' : 'Open navigation'} aria-expanded={open} onClick={()=>setOpen(!open)}>{open ? <X/> : <Menu/>}</Button></div>{open && <nav className="mobile-nav" aria-label="Mobile navigation">{links.map(link=><Link to={link.to} key={link.to} activeProps={{className:'nav-active'}}>{link.label}</Link>)}<Link to="/contact">Contact <ArrowUpRight size={16}/></Link></nav>}</header>;
+}
+export function PortfolioFooter() {return <footer className="site-footer page-width"><div><Link to="/" className="monogram">SJ<span>.</span></Link><p>Shaurya Jain · CSE AI & ML · JECRC University</p></div><span>Learning Today. Building Tomorrow.</span><div className="footer-socials"><Button asChild variant="ghost" size="icon"><a href={`mailto:${profile.email}`} aria-label="Email Shaurya"><Mail/></a></Button><Button asChild variant="ghost" size="icon"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Shaurya on LinkedIn"><Linkedin/></a></Button></div></footer>;}

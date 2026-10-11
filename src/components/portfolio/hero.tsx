@@ -1,0 +1,12 @@
+import { useEffect, useState } from 'react';
+import { Link } from '@tanstack/react-router';
+import { ArrowDown, ArrowUpRight, GraduationCap, Code2, Sparkles } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { profile } from '@/data/portfolio';
+import orb from '@/assets/neural-orb.jpg';
+export function Hero() {
+ const phrases=['Exploring Artificial Intelligence','Learning to Build','Future-Ready Engineer'] as const;
+ const [typed,setTyped]=useState<string>(phrases[0]);
+ useEffect(()=>{ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; let index=0; let length=phrases[0].length; let deleting=true; let timeout:ReturnType<typeof setTimeout>; function tick(){if(deleting){length--;if(length<=0){deleting=false;index=(index+1)%phrases.length;}}else{length++;if(length>=(phrases[index] ?? phrases[0]).length)deleting=true;}const phrase=phrases[index] ?? phrases[0];setTyped(phrase.slice(0,length));timeout=setTimeout(tick,length===phrase.length?2200:deleting?40:75);} timeout=setTimeout(tick,2400);return()=>clearTimeout(timeout);},[]);
+ return <><section className="hero page-width"><div className="hero-art" aria-hidden="true"><img src={orb} alt="" width={1024} height={1024} fetchPriority="high"/><div className="orb-caption"><span className="status-dot"/> NEURAL NETWORK · ALWAYS EVOLVING</div><span className="art-coordinate top">AI / ML</span><span className="art-coordinate bottom">CONNECTED BY CURIOSITY</span></div><div className="hero-content"><span className="hero-kicker"><span className="status-dot"/> FIRST-YEAR STUDENT. LIFELONG LEARNER.</span><h1>SHAURYA <span>JAIN<span className="name-period">.</span></span></h1><div className="identity">Aspiring AI/ML Engineer <span>|</span> B.Tech CSE AI & ML</div><h2>Learning Today.<br/><span className="gradient-text">Building Tomorrow.</span></h2><p>{profile.introduction}</p><div className="hero-actions"><Button variant="hero" size="lg" asChild><Link to="/about">Explore My Journey <ArrowUpRight/></Link></Button><Button variant="outline" size="lg" asChild><Link to="/contact">Contact Me <ArrowUpRight/></Link></Button></div><div className="typing-line"><Code2 size={16}/><span>{typed}</span><i/></div></div></section><div className="hero-bottom page-width"><div><GraduationCap size={17}/><span>JECRC University</span><span className="divider"/><span>CSE · AI & ML</span><span className="divider"/><span>Class of 2030</span></div><Link to="/about" className="scroll-link">THE JOURNEY STARTS HERE <ArrowDown size={14}/></Link></div></>;
+}
