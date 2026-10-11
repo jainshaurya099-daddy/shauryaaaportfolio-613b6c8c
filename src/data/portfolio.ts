@@ -1,35 +1,75 @@
+// ─────────────────────────────────────────────────────────────
+// EDIT ME — every personal detail on the site lives in this file.
+// Leave a link as '' when it does not exist yet; the site then shows
+// "not yet available" instead of a fake link.
+// ─────────────────────────────────────────────────────────────
 export const profile = {
   name: 'Shaurya Jain',
+  degree: 'B.Tech',
+  branch: 'Computer Science Engineering — Artificial Intelligence & Machine Learning',
+  shortBranch: 'CSE AI & ML',
+  stage: 'First-year student',
+  college: 'JECRC University',
+  graduationYear: '2030',
   email: 'Jainshaurya099@gmail.com',
   linkedin: 'https://www.linkedin.com/in/shaurya-jain-39558b221?utm_source=share_via&utm_content=profile&utm_medium=member_android',
-  introduction: 'I’m a first-year Computer Science Engineering student at JECRC University, exploring programming, software development, and Artificial Intelligence & Machine Learning. I’m focused on building strong technical foundations, learning by doing, and developing projects that solve real-world problems.',
+  github: '', // add your GitHub profile URL here when it exists
+  photo: '', // add an image URL/import here to replace the abstract avatar
+  introduction:
+    'I’m a first-year B.Tech CSE AI & ML student building strong foundations in programming, exploring artificial intelligence, and slowly turning curiosity into practical projects. I learn best by doing — writing small programs, breaking things, and figuring out why they broke.',
 };
-export const projects = [
-  { id: '01', name: 'Personal Portfolio Website', purpose: 'Present my background, learning journey, interests, and future projects.', status: 'In Progress', technologies: ['React', 'TypeScript', 'Tailwind CSS'], visual: 'portfolio' },
-  { id: '02', name: 'C Programming Practice', purpose: 'Practice basic programming concepts and improve logical thinking.', status: 'Learning', technologies: ['C'], visual: 'code' },
-  { id: '03', name: 'Beginner Web Development Experiments', purpose: 'Explore website structure, styling, and interactive behavior.', status: 'Learning', technologies: ['HTML', 'CSS', 'JavaScript'], visual: 'web' },
+
+export const roles = ['Aspiring AI/ML Engineer', 'Developer in Progress', 'Problem Solver', 'Future Software Engineer'] as const;
+
+export const profilePanel = [
+  { k: 'Current mission', v: 'Master the fundamentals' },
+  { k: 'Exploring', v: 'AI, ML & software development' },
+  { k: 'Mindset', v: 'Learn → Build → Improve' },
+  { k: 'Long-term goal', v: 'Create technology that solves real problems' },
 ];
-export const skills = [
-  { title: 'Programming', icon: 'code', status: 'Learning', items: ['C programming', 'Python'] },
-  { title: 'Web Development', icon: 'web', status: 'Learning', items: ['HTML', 'CSS', 'JavaScript'] },
-  { title: 'Computer Science Fundamentals', icon: 'database', status: 'Building Foundations', items: ['Data Structures & Algorithms', 'Problem-solving', 'Database fundamentals'] },
-  { title: 'Emerging Technologies', icon: 'brain', status: 'Exploring', items: ['AI/ML fundamentals', 'Data analysis', 'Cloud computing', 'Cybersecurity', 'Prompt engineering'] },
+
+export type SkillLevel = 'Practicing' | 'Beginner' | 'Exploring';
+export const skillGroups = [
+  { group: 'Currently Practicing', skills: [
+    { name: 'C Programming', icon: 'terminal', level: 'Practicing' as SkillLevel, text: 'Core syntax, loops and logic.', detail: 'Working through pointers, arrays and writing small console programs.' },
+    { name: 'Python', icon: 'python', level: 'Beginner' as SkillLevel, text: 'Readable code for everything.', detail: 'Learning data types, functions and the basics I’ll need for ML later.' },
+    { name: 'Problem Solving', icon: 'puzzle', level: 'Practicing' as SkillLevel, text: 'Breaking problems into steps.', detail: 'Practising logic-building and beginner DSA patterns.' },
+  ]},
+  { group: 'Web Foundations', skills: [
+    { name: 'HTML', icon: 'html', level: 'Beginner' as SkillLevel, text: 'Structure of the web.', detail: 'Semantic elements and accessible page structure.' },
+    { name: 'CSS', icon: 'css', level: 'Beginner' as SkillLevel, text: 'Layout and visual design.', detail: 'Flexbox, grid and responsive layouts that work on phones.' },
+    { name: 'JavaScript', icon: 'js', level: 'Beginner' as SkillLevel, text: 'Making pages interactive.', detail: 'DOM events, functions and small interactive experiments.' },
+  ]},
+  { group: 'Exploring AI', skills: [
+    { name: 'Artificial Intelligence', icon: 'brain', level: 'Exploring' as SkillLevel, text: 'How machines reason.', detail: 'Reading about core ideas and how AI tools are actually built.' },
+    { name: 'Machine Learning', icon: 'network', level: 'Exploring' as SkillLevel, text: 'Learning from data.', detail: 'Starting with the intuition behind models before the math.' },
+  ]},
 ];
-export const stages = [
-  { title: 'Build the Foundation', text: 'Strengthen programming, logical thinking, and core computer science concepts.', label: 'CURRENT FOCUS' },
-  { title: 'Create and Experiment', text: 'Build beginner projects and practise writing code.', label: 'NEXT STEPS' },
-  { title: 'Explore AI/ML', text: 'Learn the fundamentals of machine learning and experiment with practical applications.', label: 'ON THE HORIZON' },
-  { title: 'Prepare for the Future', text: 'Develop projects, improve problem-solving, and work towards campus placement readiness by graduation.', label: 'LOOKING TOWARDS 2030' },
+
+export type ProjectStatus = 'In Progress' | 'Learning' | 'Planned';
+export const projects: { id: string; name: string; description: string; tags: string[]; status: ProjectStatus; visual: 'browser' | 'code' | 'neural'; github: string; demo: string }[] = [
+  { id: '01', name: 'Personal Portfolio', description: 'A responsive website introducing my journey as a student developer.', tags: ['HTML', 'CSS', 'JavaScript'], status: 'In Progress', visual: 'browser', github: '', demo: '/' },
+  { id: '02', name: 'C Programming Playground', description: 'A collection of beginner programs, experiments, and programming fundamentals.', tags: ['C', 'Logic Building'], status: 'Learning', visual: 'code', github: '', demo: '' },
+  { id: '03', name: 'AI Exploration Lab', description: 'A growing space for AI/ML experiments, learning notes, and future projects.', tags: ['Python', 'AI/ML'], status: 'Planned', visual: 'neural', github: '', demo: '' },
 ];
-export const commands = ['help', 'about', 'skills', 'projects', 'journey', 'contact', 'clear'] as const;
+
+export const journey = [
+  { when: 'Started', icon: 'flag', title: 'Beginning my B.Tech journey', text: `Joined ${'JECRC University'} for CSE with a specialisation in AI & ML.` },
+  { when: 'Now', icon: 'code', title: 'Learning programming & web fundamentals', text: 'C, Python, HTML, CSS and JavaScript — one concept at a time.' },
+  { when: 'Next', icon: 'hammer', title: 'Building practical projects', text: 'Turning lessons into small projects and strengthening problem-solving.' },
+  { when: 'Future', icon: 'rocket', title: 'Advanced AI/ML & internships', text: 'Exploring deeper AI/ML work and looking for internship opportunities.' },
+];
+
+export const commands = ['help', 'about', 'skills', 'projects', 'future', 'contact', 'clear'] as const;
+
 export function terminalOutput(input: string): string {
   const command = input.trim().toLowerCase();
   switch (command) {
     case 'help': return 'Available commands: ' + commands.join(' · ');
-    case 'about': return profile.name + ' — Aspiring AI/ML engineer and software developer.\n' + profile.introduction;
-    case 'skills': return skills.map(s => `${s.title} [${s.status}]: ${s.items.join(', ')}`).join('\n');
-    case 'projects': return projects.map(p => `${p.name} [${p.status}]\n  ${p.purpose}`).join('\n');
-    case 'journey': return 'JECRC University · First-year B.Tech CSE AI & ML · Expected graduation: 2030\n' + stages.map((s, i) => `${i + 1}. ${s.title} — ${s.text}`).join('\n');
+    case 'about': return `${profile.name} — ${profile.stage}, ${profile.degree} ${profile.shortBranch} at ${profile.college}.\n${profile.introduction}`;
+    case 'skills': return skillGroups.map(g => `${g.group}: ${g.skills.map(s => `${s.name} [${s.level}]`).join(', ')}`).join('\n');
+    case 'projects': return projects.map(p => `${p.id} ${p.name} [${p.status}]\n   ${p.description}`).join('\n');
+    case 'future': return journey.map(j => `${j.when.padEnd(7)}→ ${j.title}`).join('\n') + `\nExpected graduation: ${profile.graduationYear}`;
     case 'contact': return `Email: ${profile.email}\nLinkedIn: ${profile.linkedin}`;
     case 'clear': return '';
     default: return `Command not found: ${input.slice(0, 100)}. Type help to see available commands.`;
