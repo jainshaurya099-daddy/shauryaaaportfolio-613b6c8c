@@ -1,24 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
-
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Hero } from "@/components/portfolio/hero";
+import { AboutSection, SkillsSection, ProjectsSection, RoadmapSection, ContactSection } from "@/components/portfolio/sections";
+import { DeveloperTerminal } from "@/components/portfolio/terminal";
 export const Route = createFileRoute("/")({
+  head: () => ({ meta: [
+    { title: "Shaurya Jain — Aspiring AI/ML Engineer" },
+    { name: "description", content: "The learning journey of Shaurya Jain, first-year B.Tech CSE AI & ML student at JECRC University. Learning today. Building tomorrow." },
+    { property: "og:title", content: "Shaurya Jain — Learning Today. Building Tomorrow." },
+    { property: "og:description", content: "Explore my learning journey, programming experiments and future goals as an aspiring AI/ML engineer at JECRC University." },
+    { property: "og:type", content: "website" },
+    { property: "og:url", content: "/" },
+    { name: "twitter:card", content: "summary_large_image" },
+  ], links: [{ rel: "canonical", href: "/" }] }),
   component: Index,
 });
-
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
-  );
+  return <><Hero /><AboutSection preview /><SkillsSection /><ProjectsSection preview /><DeveloperTerminal /><RoadmapSection /><ContactSection /></>;
 }
