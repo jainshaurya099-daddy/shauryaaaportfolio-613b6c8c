@@ -1,4 +1,3 @@
-# Portfolio roadmap
-- [x] Build dark portfolio design, shared navigation and all content pages.
-- [x] Add functional terminal, skills filters and real contact actions.
-- [x] Verify commands, links and layouts at phone, tablet and desktop widths.
+# Roadmap
+- [ ] Rebuild as cinematic futuristic portfolio (hero, nav, about, skills, projects, journey, digital brain terminal, contact, micro-interactions)
+- [ ] Polish pass: typography, spacing, hierarchy, hero composition, animation timing, project previews, mobile
