@@ -1,27 +1,38 @@
-import { useEffect, useRef, useState } from 'react';
-import { ArrowUpRight, Terminal as TerminalIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { commands, terminalOutput } from '@/data/portfolio';
+import { Reveal, SectionHead } from './effects';
 
+type Entry = { cmd: string; out: string };
 export function DeveloperTerminal() {
-  const [input, setInput] = useState('');
-  const [history, setHistory] = useState<{ command: string; output: string }[]>([{ command: 'hello', output: 'Welcome to my corner of the internet.\nType help to start exploring.' }]);
-  const [recall, setRecall] = useState<string[]>([]);
-  const [position, setPosition] = useState(0);
-  const outputRef = useRef<HTMLDivElement>(null);
-  useEffect(() => { if (outputRef.current) outputRef.current.scrollTop = outputRef.current.scrollHeight; }, [history]);
-  function run(value: string) {
-    const command = value.trim().slice(0, 100);
-    if (!command) return;
-    setHistory(old => command.toLowerCase() === 'clear' ? [] : [...old.slice(-49), { command, output: terminalOutput(command) }]);
-    setRecall(old => [...old, command]); setPosition(recall.length + 1); setInput('');
-  }
-  return <section className="terminal-section page-width reveal">
-    <div className="terminal-intro"><span className="eyebrow"><TerminalIcon size={14} /> A DIFFERENT WAY TO EXPLORE</span><h2>A little curiosity.<br /><span className="text-muted-foreground">A few commands.</span></h2><p>Meet the student behind the screen.</p><span className="terminal-note">shaurya@portfolio:~</span></div>
-    <div className="terminal-window"><div className="terminal-title"><div className="window-dots"><i /><i /><i /></div><span>shaurya — interactive terminal</span><TerminalIcon size={14} /></div>
-      <div className="terminal-output" ref={outputRef} aria-live="polite" role="log">{history.map((entry, i) => <div key={i} className="terminal-entry"><div className="terminal-prompt">❯ <span>{entry.command}</span></div><div className="terminal-text">{entry.output}</div></div>)}</div>
-      <form className="terminal-input" onSubmit={e => { e.preventDefault(); run(input); }}><span>❯</span><input aria-label="Terminal command" maxLength={100} autoComplete="off" spellCheck={false} placeholder="Type a command…" value={input} onChange={e => setInput(e.target.value)} onKeyDown={e => { if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); const next = e.key === 'ArrowUp' ? Math.max(0, position - 1) : Math.min(recall.length, position + 1); setPosition(next); setInput(recall[next] ?? ''); } }} /><Button size="icon" variant="ghost" type="submit" aria-label="Run command"><ArrowUpRight /></Button></form>
-      <div className="terminal-commands">{commands.map(command => <Button key={command} size="sm" variant="ghost" onClick={() => run(command)}>{command}</Button>)}</div>
-    </div>
+  const [log, setLog] = useState<Entry[]>([{ cmd: 'help', out: terminalOutput('help') }]);
+  const [value, setValue] = useState('');
+  const [history, setHistory] = useState<string[]>([]);
+  const [pos, setPos] = useState(-1);
+  const body = useRef<HTMLDivElement>(null);
+  const first = useRef(true);
+  useEffect(() => { if (first.current) { first.current = false; return; } body.current?.scrollTo({ top: body.current.scrollHeight, behavior: 'smooth' }); }, [log]);
+  const run = (raw: string) => {
+    const cmd = raw.trim(); if (!cmd) return;
+    setHistory(h => [...h, cmd]); setPos(-1); setValue('');
+    if (cmd.toLowerCase() === 'clear') { setLog([]); return; }
+    setLog(l => [...l, { cmd, out: terminalOutput(cmd) }]);
+  };
+  const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') run(value);
+    else if (e.key === 'ArrowUp' && history.length) { e.preventDefault(); const p = pos < 0 ? history.length - 1 : Math.max(0, pos - 1); setPos(p); setValue(history[p]); }
+    else if (e.key === 'ArrowDown' && pos >= 0) { e.preventDefault(); const p = pos + 1; if (p >= history.length) { setPos(-1); setValue(''); } else { setPos(p); setValue(history[p]); } }
+  };
+  return <section id="playground" className="section page" aria-labelledby="brain-h">
+    <div id="brain-h"><SectionHead label="✦ / THE INTERACTIVE PLAYGROUND" lines={['Inside my', 'digital brain.']} accent={1} /></div>
+    <Reveal><div className="term glass">
+      <div className="boot-bar"><i /><i /><i /><span>shaurya@brain: ~</span></div>
+      <div ref={body} className="term-body" role="log" aria-live="polite" aria-label="Terminal output">
+        {log.map((e, i) => <div key={i} className="term-entry"><p className="term-cmd"><span className="prompt">›</span> {e.cmd}</p><pre>{e.out}</pre></div>)}
+        <label className="term-input"><span className="prompt" aria-hidden="true">›</span><span className="sr-only">Type a command</span>
+          <input value={value} onChange={e => setValue(e.target.value)} onKeyDown={onKey} spellCheck={false} autoCapitalize="none" autoComplete="off" placeholder="type a command…" />
+        </label>
+      </div>
+      <div className="term-chips" aria-label="Quick commands">{commands.map(c => <button key={c} type="button" onClick={() => run(c)}>{c}</button>)}</div>
+    </div></Reveal>
   </section>;
 }
