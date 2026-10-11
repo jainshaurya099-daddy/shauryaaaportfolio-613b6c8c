@@ -74,7 +74,7 @@ int main() {
   return 0; // keep going
 }`}</code></pre>;
   return <svg className="mock mock-neural" viewBox="0 0 300 180" aria-hidden="true">
-    {[[40, [40, 90, 140]], [150, [25, 70, 115, 160]], [260, [65, 115]]].flatMap(([x, ys], li, arr) => (ys as number[]).flatMap(y => li < arr.length - 1 ? (arr[li + 1][1] as number[]).map(y2 => <line key={`${x}${y}${y2}`} x1={x as number} y1={y} x2={arr[li + 1][0] as number} y2={y2} stroke="var(--violet)" strokeOpacity=".3" />) : []))}
+    {[[40, [40, 90, 140]], [150, [25, 70, 115, 160]], [260, [65, 115]]].flatMap(([x, ys], li, arr) => (ys as number[]).flatMap(y => li < arr.length - 1 ? (arr[li + 1]![1] as number[]).map(y2 => <line key={`${x}${y}${y2}`} x1={x as number} y1={y} x2={arr[li + 1]![0] as number} y2={y2} stroke="var(--violet)" strokeOpacity=".3" />) : []))}
     {[[40, [40, 90, 140]], [150, [25, 70, 115, 160]], [260, [65, 115]]].flatMap(([x, ys]) => (ys as number[]).map(y => <circle key={`c${x}${y}`} cx={x as number} cy={y} r="7" fill="var(--bg-2)" stroke="var(--cyan)" className="node" />))}
   </svg>;
 }
