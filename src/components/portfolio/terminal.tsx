@@ -19,8 +19,8 @@ export function DeveloperTerminal() {
   };
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') run(value);
-    else if (e.key === 'ArrowUp' && history.length) { e.preventDefault(); const p = pos < 0 ? history.length - 1 : Math.max(0, pos - 1); setPos(p); setValue(history[p]); }
-    else if (e.key === 'ArrowDown' && pos >= 0) { e.preventDefault(); const p = pos + 1; if (p >= history.length) { setPos(-1); setValue(''); } else { setPos(p); setValue(history[p]); } }
+    else if (e.key === 'ArrowUp' && history.length) { e.preventDefault(); const p = pos < 0 ? history.length - 1 : Math.max(0, pos - 1); setPos(p); setValue(history[p] ?? ''); }
+    else if (e.key === 'ArrowDown' && pos >= 0) { e.preventDefault(); const p = pos + 1; if (p >= history.length) { setPos(-1); setValue(''); } else { setPos(p); setValue(history[p] ?? ''); } }
   };
   return <section id="playground" className="section page" aria-labelledby="brain-h">
     <div id="brain-h"><SectionHead label="✦ / THE INTERACTIVE PLAYGROUND" lines={['Inside my', 'digital brain.']} accent={1} /></div>

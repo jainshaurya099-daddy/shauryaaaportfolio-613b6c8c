@@ -9,7 +9,7 @@ export function Reveal({ children, as: Tag = 'div', delay = 0, className = '' }:
     const el = ref.current; if (!el) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { el.classList.add('in'); return; }
     el.classList.add('pre');
-    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { el.classList.add('in'); io.disconnect(); } }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    const io = new IntersectionObserver(([e]) => { if (e?.isIntersecting) { el.classList.add('in'); io.disconnect(); } }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     io.observe(el); return () => io.disconnect();
   }, []);
   return <Tag ref={ref} className={`reveal ${className}`} style={{ '--d': `${delay}ms` } as CSSProperties}>{children}</Tag>;

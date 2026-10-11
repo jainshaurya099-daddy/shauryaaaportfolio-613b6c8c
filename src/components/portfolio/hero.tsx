@@ -28,7 +28,7 @@ function ParticleField() {
         ctx.beginPath(); ctx.arc(p.x, p.y, 1.2, 0, Math.PI * 2); ctx.fill();
       }
       for (let i = 0; i < pts.length; i++) for (let j = i + 1; j < pts.length; j++) {
-        const a = pts[i], b = pts[j]; const d = Math.hypot(a.x - b.x, a.y - b.y);
+        const a = pts[i]!, b = pts[j]!; const d = Math.hypot(a.x - b.x, a.y - b.y);
         if (d < 110) { ctx.strokeStyle = `rgba(${violet},${(1 - d / 110) * 0.16})`; ctx.lineWidth = 0.6; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
       }
       if (!reduce) raf = requestAnimationFrame(draw);
@@ -75,8 +75,8 @@ function BootPanel() {
     let line = 0, ch = 0; let t: ReturnType<typeof setTimeout>;
     const tick = () => {
       if (line >= bootLines.length) return;
-      ch++; setText(prev => { const n = [...prev]; n[line] = bootLines[line].slice(0, ch); return n; });
-      if (ch >= bootLines[line].length) { line++; ch = 0; if (line < bootLines.length) setText(p => [...p, '']); t = setTimeout(tick, 420); }
+      ch++; setText(prev => { const n = [...prev]; n[line] = (bootLines[line] ?? '').slice(0, ch); return n; });
+      if (ch >= (bootLines[line] ?? '').length) { line++; ch = 0; if (line < bootLines.length) setText(p => [...p, '']); t = setTimeout(tick, 420); }
       else t = setTimeout(tick, 38);
     };
     t = setTimeout(tick, 700); return () => clearTimeout(t);
