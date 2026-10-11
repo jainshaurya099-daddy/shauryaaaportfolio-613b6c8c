@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { profile, projects, terminalOutput } from '@/data/portfolio';
 describe('Honest portfolio content and commands', () => {
  it('uses Shaurya’s exact contact details', () => {
-  expect(profile.email).toBe('shaurya.26bcon2753@jecrcu.edu.in');
+  expect(profile.email).toBe('Jainshaurya099@gmail.com');
   expect(profile.linkedin).toBe('https://www.linkedin.com/in/shaurya-jain-39558b221?utm_source=share_via&utm_content=profile&utm_medium=member_android');
   expect(terminalOutput('contact')).toContain(profile.email);
   expect(terminalOutput('contact')).toContain(profile.linkedin);

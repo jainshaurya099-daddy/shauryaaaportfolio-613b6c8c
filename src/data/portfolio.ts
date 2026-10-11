@@ -1,6 +1,6 @@
 export const profile = {
   name: 'Shaurya Jain',
-  email: 'shaurya.26bcon2753@jecrcu.edu.in',
+  email: 'Jainshaurya099@gmail.com',
   linkedin: 'https://www.linkedin.com/in/shaurya-jain-39558b221?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   introduction: 'I’m a first-year Computer Science Engineering student at JECRC University, exploring programming, software development, and Artificial Intelligence & Machine Learning. I’m focused on building strong technical foundations, learning by doing, and developing projects that solve real-world problems.',
 };
