@@ -13,6 +13,7 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { PortfolioHeader, PortfolioFooter, BackToTop } from "@/components/portfolio/shell";
+import { AtmosphereInit, CornerHud } from "@/components/portfolio/atmosphere";
 
 function NotFoundComponent() {
   return (
@@ -124,6 +125,8 @@ function RootComponent() {
       <main id="main-content"><Outlet /></main>
       <PortfolioFooter />
       <BackToTop />
+      <CornerHud />
+      <AtmosphereInit />
     </QueryClientProvider>
   );
 }

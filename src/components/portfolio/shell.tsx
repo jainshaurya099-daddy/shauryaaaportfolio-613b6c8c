@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useRouterState } from '@tanstack/react-router';
 import { ArrowUp, Menu, X } from 'lucide-react';
 import { profile } from '@/data/portfolio';
+import { HeaderControls } from './atmosphere';
 
 const links = [['home', 'Home'], ['about', 'About'], ['skills', 'Skills'], ['projects', 'Projects'], ['journey', 'Journey'], ['contact', 'Contact']] as const;
 
@@ -49,6 +50,7 @@ export function PortfolioHeader() {
           <span className="nav-ind" style={{ transform: `translateX(${ind.x}px)`, width: ind.w, opacity: ind.w ? 1 : 0 }} aria-hidden="true" />
           {links.map(([id, label]) => <a key={id} data-id={id} href={href(id)} aria-current={active === id ? 'true' : undefined}>{label}</a>)}
         </nav>
+        <HeaderControls />
         <button className="menu-btn" onClick={() => setOpen(o => !o)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? 'Close menu' : 'Open menu'}>{open ? <X size={20} /> : <Menu size={20} />}</button>
       </div>
     </header>
