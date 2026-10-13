@@ -342,7 +342,16 @@ a.clink:hover, button.clink:hover { border-color: var(--border-strong); transfor
   .nav { padding-left: 10px; }
   .display-1 { margin: 22px 0 22px; }
   .hero-cta .btn { flex: 1 1 100%; }
-  .tiles { grid-template-columns: 1fr; }
+  .tiles { grid-template-columns: 1fr; gap: 10px; }
+  .tile { padding: 18px; display: grid; grid-template-columns: auto 1fr; column-gap: 14px; }
+  .tile .tile-top { display: contents; }
+  .tile .tile-icon { grid-row: 1 / span 3; align-self: start; }
+  .tile .level { grid-column: 2; justify-self: start; margin-bottom: 8px; }
+  .tile h4, .tile > p, .tile .tile-detail { grid-column: 2; }
+  .tile h4 { font-size: 18px; }
+  .tile .tile-detail { margin-top: 8px; font-size: 13px; }
+  .hero-art { width: 74%; margin-bottom: 8px; }
+  .boot { right: -14%; bottom: -8%; width: 190px; }
   .panel-row { grid-template-columns: 1fr; gap: 2px; }
   .pc-visual, .pc-0 .pc-visual { min-height: 210px; padding: 22px; }
   .mock-code { font-size: 11px; }
