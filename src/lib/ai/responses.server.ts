@@ -33,7 +33,7 @@ export function createResponsesCall(
         ...(reasoning
           ? {
               forceReasoning: true,
-              reasoningEffort: "medium",
+              reasoningEffort: "low",
               reasoningSummary: "auto",
               include: ["reasoning.encrypted_content"],
             }
@@ -44,6 +44,6 @@ export function createResponsesCall(
   return {
     result,
     response: () =>
-      withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ sendReasoning: true }), runIdFetch),
+      withLovableAiGatewayRunIdHeader(result.toUIMessageStreamResponse({ sendReasoning: false }), runIdFetch),
   };
 }
