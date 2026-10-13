@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import { commands, terminalOutput } from '@/data/portfolio';
 import { Reveal, SectionHead } from './effects';
+import { play } from '@/lib/atmosphere';
 
 type Entry = { cmd: string; out: string };
 export function DeveloperTerminal() {
@@ -13,12 +14,13 @@ export function DeveloperTerminal() {
   useEffect(() => { if (first.current) { first.current = false; return; } body.current?.scrollTo({ top: body.current.scrollHeight, behavior: 'smooth' }); }, [log]);
   const run = (raw: string) => {
     const cmd = raw.trim(); if (!cmd) return;
-    setHistory(h => [...h, cmd]); setPos(-1); setValue('');
+    play('execute'); setHistory(h => [...h, cmd]); setPos(-1); setValue('');
     if (cmd.toLowerCase() === 'clear') { setLog([]); return; }
     setLog(l => [...l, { cmd, out: terminalOutput(cmd) }]);
   };
   const onKey = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') run(value);
+    else if (e.key.length === 1 || e.key === 'Backspace') play('click');
     else if (e.key === 'ArrowUp' && history.length) { e.preventDefault(); const p = pos < 0 ? history.length - 1 : Math.max(0, pos - 1); setPos(p); setValue(history[p] ?? ''); }
     else if (e.key === 'ArrowDown' && pos >= 0) { e.preventDefault(); const p = pos + 1; if (p >= history.length) { setPos(-1); setValue(''); } else { setPos(p); setValue(history[p] ?? ''); } }
   };
@@ -32,7 +34,7 @@ export function DeveloperTerminal() {
           <input value={value} onChange={e => setValue(e.target.value)} onKeyDown={onKey} spellCheck={false} autoCapitalize="none" autoComplete="off" placeholder="type a command…" />
         </label>
       </div>
-      <div className="term-chips" aria-label="Quick commands">{commands.map(c => <button key={c} type="button" onClick={() => run(c)}>{c}</button>)}</div>
+      <div className="term-chips" aria-label="Quick commands">{commands.map(c => <button key={c} type="button" data-sfx onClick={() => run(c)}>{c}</button>)}</div>
     </div></Reveal>
   </section>;
 }
