@@ -75,3 +75,10 @@ export function terminalOutput(input: string): string {
     default: return `Command not found: ${input.slice(0, 100)}. Type help to see available commands.`;
   }
 }
+
+export const assistantSuggestions = [
+  'What is Shaurya studying?',
+  'What projects is he working on?',
+  'Which skills is he learning?',
+  'How can I contact him?',
+] as const;
