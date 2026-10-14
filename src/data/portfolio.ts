@@ -11,7 +11,7 @@ export const profile = {
   stage: 'First-year student',
   college: 'JECRC University',
   graduationYear: '2030',
-  email: 'Jainshaurya099@gmail.com',
+  email: 'shaurya.26bcon2753@jecrcu.edu.in',
   linkedin: 'https://www.linkedin.com/in/shaurya-jain-39558b221?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   github: '', // add your GitHub profile URL here when it exists
   photo: '', // add an image URL/import here to replace the abstract avatar
