@@ -14,6 +14,7 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { PortfolioHeader, PortfolioFooter, BackToTop } from "@/components/portfolio/shell";
 import { AtmosphereInit, CornerHud } from "@/components/portfolio/atmosphere";
+import { PortfolioAssistant } from "@/components/portfolio/assistant";
 
 function NotFoundComponent() {
   return (
@@ -126,6 +127,7 @@ function RootComponent() {
       <PortfolioFooter />
       <BackToTop />
       <CornerHud />
+      <PortfolioAssistant />
       <AtmosphereInit />
     </QueryClientProvider>
   );
