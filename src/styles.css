@@ -424,5 +424,5 @@ html.cinema .hero-art, html.cinema .term, html.cinema canvas { filter: saturate(
 .ask-send { width: 42px; height: 42px; flex: none; display: grid; place-items: center; border-radius: 12px; background: var(--cyan); color: oklch(0.15 0.02 260); transition: opacity .2s; }
 .ask-send:disabled { opacity: .35; cursor: not-allowed; }
 .ask-note { font-size: 11px; color: var(--subtle, var(--muted-foreground)); text-align: center; margin: 0; padding: 0 12px 10px; }
-@media (max-width: 560px) { .ask-fab { right: 12px; bottom: 64px; height: 42px; padding: 0 14px; } .ask { right: 0; bottom: 0; width: 100vw; height: 100dvh; border-radius: 0; } .ask-form textarea { font-size: 16px; } }
+@media (max-width: 560px) { .ask-fab { right: 12px; bottom: 64px; height: 42px; padding: 0 14px; } .ask { right: 0; bottom: 0; width: 100vw; height: 100dvh; border-radius: 0; background: oklch(0.1 0.015 280 / .98); } .ask-form textarea { font-size: 16px; } }
 @media (prefers-reduced-motion: reduce) { .ask.open, .ask-typing i { animation: none; } }
