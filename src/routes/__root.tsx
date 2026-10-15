@@ -127,7 +127,7 @@ function RootComponent() {
       <PortfolioFooter />
       <BackToTop />
       <CornerHud />
-      <PortfolioAssistant />
+      <BotpressChat />
       <AtmosphereInit />
     </QueryClientProvider>
   );
