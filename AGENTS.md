@@ -12,4 +12,4 @@
 - Store portfolio identity, projects, learning areas and roadmap in a shared browser-safe data module so content stays consistent across pages and terminal commands.
 - Use a shared portfolio header and footer in the root, with dedicated shareable content routes and a curated complete overview at the index.
 - Contact actions use actual mailto and LinkedIn links, with clipboard copy; do not imply message delivery through an unconnected form.
-- The portfolio assistant streams from the /api/ask server route; its prompt is built only from src/data/portfolio.ts via src/lib/assistant-prompt.ts so answers stay truthful and in sync with the site.
+- Visitor chat is the owner's Botpress webchat, loaded client-only in src/components/portfolio/botpress-chat.tsx (bot/client IDs and config live there); do not re-add a custom assistant.
